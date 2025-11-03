@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.WinningLotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,21 +12,21 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public WinningLotto readWinningNumbers() {
+    public List<Integer> readWinningNumbers() {
         while (true) {
             try {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
-                List<Integer> winningNums = Arrays.stream(input.split(","))
+                String[] parts = input.split(",");
+
+                List<Integer> winningNums = Arrays.stream(parts)
                         .map(String::trim)
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
-
-                System.out.println("\n보너스 번호를 입력해 주세요.");
-                int bonusNum = Integer.parseInt(Console.readLine().trim());
-
-                return new WinningLotto(winningNums, bonusNum);
-            } catch (Exception e) {}
+                return winningNums;
+            } catch (Exception e) {
+                System.out.println("[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.");
+            }
         }
     }
 
@@ -37,7 +36,9 @@ public class InputView {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 return Integer.parseInt(input.trim());
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                System.out.println("[ERROR] 입력 중 알 수 없는 오류가 발생했습니다.");
+            }
         }
     }
 }
