@@ -8,11 +8,18 @@ import java.util.stream.Collectors;
 
 public class InputView {
     public int readPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = Console.readLine();
+                return Integer.parseInt(input.trim());
+            } catch (NumberFormatException  e) {
+                System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+            }
+        }
     }
 
-    public List<Integer> readWinningNumbers() {
+            public List<Integer> readWinningNumbers() {
         while (true) {
             try {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -24,7 +31,7 @@ public class InputView {
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
                 return winningNums;
-            } catch (Exception e) {
+            } catch (NumberFormatException  e) {
                 System.out.println("[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.");
             }
         }
@@ -36,7 +43,7 @@ public class InputView {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 return Integer.parseInt(input.trim());
-            } catch (Exception e) {
+            } catch (NumberFormatException  e) {
                 System.out.println("[ERROR] 입력 중 알 수 없는 오류가 발생했습니다.");
             }
         }
