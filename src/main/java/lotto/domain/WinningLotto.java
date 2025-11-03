@@ -23,9 +23,9 @@ public class WinningLotto {
         validateDuplicate(winningNums);
     }
 
-    private void validateBonusNum(int bonusNumber, List<Integer> winningNumbers) {
+    private void validateBonusNum(int bonusNum, List<Integer> winningNumbers) {
         validateBonusRange(bonusNum);
-        validateBonusDuplicate(bonusNumber, winningNumbers);
+        validateBonusDuplicate(bonusNum, winningNumbers);
     }
 
     private void validateSize(List<Integer> winningNums){
@@ -36,7 +36,7 @@ public class WinningLotto {
 
     private void validateRange(List<Integer> winningNums){
         if(winningNums.stream().anyMatch(num -> num < MIN_NUMBER || num > MAX_NUMBER)){
-            throw new IllegalArgumentException("로또 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
@@ -46,7 +46,6 @@ public class WinningLotto {
             throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
     }
-
 
     private void validateBonusRange(int bonusNum) {
         if (bonusNum < MIN_NUMBER || bonusNum > MAX_NUMBER) {
