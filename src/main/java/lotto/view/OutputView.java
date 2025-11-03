@@ -10,7 +10,10 @@ public class OutputView {
     public void printPurchasedLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedNumbers = lotto.getNumbers().stream()
+                    .sorted()
+                    .toList();
+            System.out.println(sortedNumbers);
         }
         System.out.println();
     }
